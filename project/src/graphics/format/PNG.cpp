@@ -15,39 +15,6 @@ extern "C" {
 
 namespace lime {
 
-
-	struct ReadBuffer {
-
-		ReadBuffer (const unsigned char* data, int length) : data (data), length (length), position (0) {}
-
-		int Read (void* dst, size_t length) {
-
-			if (position >= this->length) return SPNG_IO_EOF;
-
-			size_t available = this->length - position;
-			size_t to_read = (length < available) ? length : available;
-
-			memcpy (dst, data + position, to_read);
-			position += to_read;
-
-			return SPNG_OK;
-
-		}
-
-		const unsigned char* data;
-		int length;
-		int position;
-
-	};
-
-
-	static int user_read_fn (spng_ctx *ctx, void *user, void *dest, size_t length) {
-
-		ReadBuffer* buffer = (ReadBuffer*)user;
-		return buffer->Read (dest, length);
-
-	}
-
 	bool PNG::Decode (Resource *resource, ImageBuffer *imageBuffer, bool decodeData) {
 
 		spng_ctx *ctx = NULL;
@@ -113,15 +80,13 @@ namespace lime {
 
 				data = new Bytes ();
 				data->ReadFile (resource->path);
-				ReadBuffer buffer (data->b, data->length);
-				spng_set_png_stream (ctx, user_read_fn, &buffer);
+				spng_set_png_buffer(ctx, data->b, data->length);
 
 			}
 
 		} else {
 
-			ReadBuffer buffer (resource->data->b, resource->data->length);
-			spng_set_png_stream (ctx, user_read_fn, &buffer);
+			spng_set_png_buffer(ctx, resource->data->b, resource->data->length);
 
 		}
 
