@@ -208,8 +208,7 @@
 
 		<section if="LIME_PNG">
 
-			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/custom/png/" />
-			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/png/" />
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/png/spng/" />
 			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/zlib/" />
 			<compilerflag value="-DLIME_PNG" />
 

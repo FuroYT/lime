@@ -26,10 +26,6 @@
 	path = project/lib/neko
 	url = https://github.com/HaxeFoundation/neko
 	shallow = true
-[submodule "project/lib/png"]
-	path = project/lib/png
-	url = https://github.com/glennrp/libpng
-	shallow = true
 [submodule "project/lib/jpeg"]
 	path = project/lib/jpeg
 	url = https://github.com/libjpeg-turbo/libjpeg-turbo
@@ -82,4 +78,8 @@
 [submodule "project/lib/hashlink"]
 	path = project/lib/hashlink
 	url = https://github.com/HaxeFoundation/hashlink
+	shallow = true
+[submodule "project/lib/png"]
+	path = project/lib/png
+	url = https://github.com/randy408/libspng
 	shallow = true
