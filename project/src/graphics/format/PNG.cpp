@@ -37,7 +37,9 @@ namespace lime {
 
 			}
 
+			#ifndef ANDROID
 			lime::fseek (file, 0, SEEK_SET);
+			#endif
 
 		} else {
 
