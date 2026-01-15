@@ -37,9 +37,9 @@ jobs:
       - name: Rebuild Tools
         run: haxelib run lime rebuild tools
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
-          name: tools.n
+          name: Tools
           path: |
             tools/tools.n
           if-no-files-found: error
