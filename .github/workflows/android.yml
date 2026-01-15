@@ -5,7 +5,7 @@ on:
 
 jobs:
   android:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -42,10 +42,11 @@ jobs:
 
       - name: Configure Android support
         run: |
-          haxelib run lime config ANDROID_SDK $ANDROID_HOME
-          haxelib run lime config ANDROID_NDK_ROOT ${{ steps.setup-ndk.outputs.ndk-path }} -nocffi
-          haxelib run lime config JAVA_HOME $JAVA_HOME_11_X64
-          haxelib run lime config ANDROID_SETUP true
+          haxelib run lime setup -alias -y -nocffi
+          lime config ANDROID_SDK $ANDROID_HOME
+          lime config ANDROID_NDK_ROOT ${{ steps.setup-ndk.outputs.ndk-path }}
+          lime config JAVA_HOME $JAVA_HOME_11_X64
+          lime config ANDROID_SETUP true
 
       - name: Rebuild Lime
         run: haxelib run lime rebuild android -eval -nocolor -nocffi -release
