@@ -17,8 +17,10 @@ jobs:
           haxe-version: 4.2.5
       - name: Install Haxe dependencies
         run: |
-          curl -LO https://github.com/HaxeFoundation/hxcpp/releases/download/v4.3.66/hxcpp-4.3.66.zip
-          haxelib install ./hxcpp-4.3.66.zip --quiet
+          haxelib git hxcpp https://github.com/FunkinCrew/hxcpp --quiet
+          cd "$(haxelib path hxcpp | head -n 1)"
+          cd tools/hxcpp
+          haxe compile.hxml
           haxelib install format --quiet
           haxelib install hxp --quiet
           haxelib dev lime ${{ github.workspace }}

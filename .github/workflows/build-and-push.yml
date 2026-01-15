@@ -14,9 +14,11 @@ jobs:
     uses: ./.github/workflows/windows.yml
   miscellaneous:
     uses: ./.github/workflows/miscellaneous.yml
+  tools:
+    uses: ./.github/workflows/tools.yml
 
   publisher:
-    needs: [android, ios, linux, mac, windows, miscellaneous]
+    needs: [android, ios, linux, mac, windows, miscellaneous, tools]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -40,7 +42,7 @@ jobs:
           USER_INFO=$(curl -s "https://api.github.com/users/${{ github.actor }}")
           USERID=$(echo "$USER_INFO" | jq -r '.id')
           USERNAME=$(echo "$USER_INFO" | jq -r '.name')
-          
+
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add ndll

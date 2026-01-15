@@ -21,7 +21,10 @@ jobs:
 
       - name: Install Haxe dependencies
         run: |
-          haxelib install hxcpp 4.2.1 --quiet
+          haxelib git hxcpp https://github.com/FunkinCrew/hxcpp --quiet
+          cd "$(haxelib path hxcpp | head -n 1)"
+          cd tools/hxcpp
+          haxe compile.hxml
           haxelib install format --quiet
           haxelib install openfl --quiet
           haxelib install svg --quiet
