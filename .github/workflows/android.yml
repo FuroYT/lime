@@ -42,7 +42,7 @@ jobs:
 
       - name: Configure Android support
         run: |
-          haxelib run lime setup -alias -y
+          haxelib run lime setup -alias -y -nocffi
           lime config ANDROID_SDK $ANDROID_HOME
           lime config ANDROID_NDK_ROOT ${{ steps.setup-ndk.outputs.ndk-path }}
           lime config JAVA_HOME $JAVA_HOME_11_X64
